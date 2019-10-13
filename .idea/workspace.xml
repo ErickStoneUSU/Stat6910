@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e83d56d1-fd65-4fd1-a560-8e15af96dca5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HW3/MNIST_Classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/HW3/MNIST_Classifier.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,8 +34,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/HW3/MNIST_Classifier.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="29" column="26" lean-forward="true" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
+            <state relative-caret-position="168">
+              <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -58,9 +59,11 @@
       <find>bayes</find>
       <find>fit</find>
       <find>_update_feature_log_prob</find>
+      <find>p</find>
     </findStrings>
     <replaceStrings>
       <replace>items</replace>
+      <replace>a</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -72,15 +75,16 @@
         <option value="$PROJECT_DIR$/HW2/test.py" />
         <option value="$PROJECT_DIR$/HW2/NaiveBayes.py" />
         <option value="$PROJECT_DIR$/HW2/HW2_Gaussian_Mixture_Starter_Code.py" />
+        <option value="$PROJECT_DIR$/HW3/test.py" />
         <option value="$PROJECT_DIR$/HW3/MNIST_Classifier.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1673" />
-    <option name="y" value="1669" />
-    <option name="width" value="1455" />
-    <option name="height" value="1170" />
+    <option name="x" value="-1929" />
+    <option name="y" value="1327" />
+    <option name="width" value="1938" />
+    <option name="height" value="1168" />
   </component>
   <component name="ProjectId" id="1R2UQnxG52X5kFMTNBdrOtevZHF" />
   <component name="ProjectView">
@@ -89,6 +93,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -105,7 +110,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -138,7 +142,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.MNIST_Classifier">
+  <component name="RunManager" selected="Python.test (1)">
     <configuration name="HW2_Gaussian_Mixture_Starter_Code" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="STAT" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -227,6 +231,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="test (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="STAT" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/HW3" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/HW3/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="STAT" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -254,10 +280,12 @@
       <item itemvalue="Python.test" />
       <item itemvalue="Python.HW2_Gaussian_Mixture_Starter_Code" />
       <item itemvalue="Python.MNIST_Classifier" />
+      <item itemvalue="Python.test (1)" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.MNIST_Classifier" />
+        <item itemvalue="Python.test (1)" />
         <item itemvalue="Python.HW2_Gaussian_Mixture_Starter_Code" />
         <item itemvalue="Python.NaiveBayes" />
         <item itemvalue="Python.test" />
@@ -281,17 +309,19 @@
       <workItem from="1569709012517" duration="48903000" />
       <workItem from="1569946127894" duration="27000" />
       <workItem from="1570648456150" duration="5863000" />
+      <workItem from="1570722082501" duration="608000" />
+      <workItem from="1570913012447" duration="41223000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56553000" />
+    <option name="totallyTimeSpent" value="98384000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1927" y="1329" width="1550" height="934" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29194632" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -299,7 +329,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32991013" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.4986577" visible="true" weight="0.5365854" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49731544" visible="true" weight="0.37612325" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -308,7 +338,7 @@
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Docker" order="10" />
       <window_info anchor="bottom" id="Dependency Graph" order="11" />
-      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.5013423" side_tool="true" visible="true" weight="0.5365854" />
+      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.5026846" side_tool="true" visible="true" weight="0.37612325" />
       <window_info anchor="bottom" id="RNConsole" order="13" />
       <window_info anchor="bottom" id="Database Changes" order="14" />
       <window_info anchor="bottom" id="Version Control" order="15" />
@@ -341,9 +371,9 @@
           <option name="timeStamp" value="100" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/HW3/MNIST_Classifier.py</url>
-          <line>29</line>
-          <option name="timeStamp" value="102" />
+          <url>file://$PROJECT_DIR$/HW3/test.py</url>
+          <line>76</line>
+          <option name="timeStamp" value="207" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -357,124 +387,107 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Stat6910$HW2_Gaussian_Mixture_Starter_Code.coverage" NAME="HW2_Gaussian_Mixture_Starter_Code Coverage Results" MODIFIED="1569817596308" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HW2" />
+    <SUITE FILE_PATH="coverage/Stat6910$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1570954843737" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HW3" />
     <SUITE FILE_PATH="coverage/Stat6910$test.coverage" NAME="test Coverage Results" MODIFIED="1569735605848" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HW2" />
-    <SUITE FILE_PATH="coverage/Stat6910$MNIST_Classifier.coverage" NAME="MNIST_Classifier Coverage Results" MODIFIED="1570661114855" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HW3" />
+    <SUITE FILE_PATH="coverage/Stat6910$MNIST_Classifier.coverage" NAME="MNIST_Classifier Coverage Results" MODIFIED="1570955130078" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HW3" />
     <SUITE FILE_PATH="coverage/Stat6910$NaiveBayes.coverage" NAME="NaiveBayes Coverage Results" MODIFIED="1569750938995" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HW2" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateCodeFragment">
       <expression>
-        <expression-string>dict['y']</expression-string>
+        <expression-string>np.array(d).T</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>dict['x']</expression-string>
+        <expression-string>np.array(d)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>t_1000 = []
-t_500 = []
-t_200 = []
-t_100 = []
-for i in b:
-    if '1000' in i:
-        t_1000.append(sum(b[i]) / len(b[i]))
-    elif '500' in i:
-        t_500.append(sum(b[i]) / len(b[i]))
-    elif '200' in i:
-        t_200.append(sum(b[i]) / len(b[i]))
-    elif '100' in i:
-        t_100.append(sum(b[i]) / len(b[i]))</expression-string>
+        <expression-string>np.diag(np.array(d).reshape(3000,1))</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>np.std(t_100)</expression-string>
+        <expression-string>np.diag(np.array(d).reshape(1,3000))</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>len(t_1000)</expression-string>
+        <expression-string>np.diag(np.array(d))</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>len(t_100)</expression-string>
+        <expression-string>np.diag(np.array(d),0)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>for i in b:
-    print(i)</expression-string>
+        <expression-string>np.diag(d,0)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>(sum(p_list[0]) / len(p_list[0]) +
- sum(p_list[1]) / len(p_list[1]) +
- sum(p_list[2]) / len(p_list[2]) +
- sum(p_list[3]) / len(p_list[3]) +
- sum(p_list[4]) / len(p_list[4]) +
- sum(p_list[5]) / len(p_list[5])) / 6.0</expression-string>
+        <expression-string>np.diag(d,1)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>(sum(p_list[0]) / len(p_list[0]) +
- sum(p_list[1]) / len(p_list[1]) +
- sum(p_list[2]) / len(p_list[2]) +
- sum(p_list[3]) / len(p_list[3]) +
- sum(p_list[4]) / len(p_list[4]) +
- sum(p_list[5]) / len(p_list[5])) / 5.0</expression-string>
+        <expression-string>np.diag(d)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>np.sum(np.diag(d) * np.dot(x.T, x),0)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
     </expressions>
     <expressions id="evaluateExpression">
       <expression>
-        <expression-string>np.std(t_1000)</expression-string>
+        <expression-string>w - ch[0][0] - np.min(reg)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>np.std(t_500)</expression-string>
+        <expression-string>w</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>np.std(t_200)</expression-string>
+        <expression-string>ch[0][0]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>len(b['2_100'])</expression-string>
+        <expression-string>np.min(reg)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>len(b[0])</expression-string>
+        <expression-string>w - ch[0][0] - reg</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>len(b)</expression-string>
+        <expression-string>reg = l * np.dot(a, a.T) / 3000.0</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>len(b[2])</expression-string>
+        <expression-string>ch = np.dot(grad, h)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>len(b[1])</expression-string>
+        <expression-string>ch[1][0]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>len(b_list[0])</expression-string>
+        <expression-string>np.dot(grad, h)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -593,10 +606,48 @@ for i in b:
         </state>
       </provider>
     </entry>
+    <entry file="file://C:/Program Files/Python36/Lib/site-packages/sklearn/linear_model/logistic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1471">
+          <caret line="674" lean-forward="true" selection-start-line="674" selection-end-line="674" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Python36/Lib/site-packages/sklearn/externals/joblib/parallel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="263" column="4" selection-start-line="263" selection-start-column="4" selection-end-line="263" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Python36/Lib/site-packages/numpy/linalg/linalg.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="531" column="5" selection-start-line="531" selection-start-column="5" selection-end-line="531" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Python36/Lib/site-packages/scipy/io/matlab/mio.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="76" column="4" selection-start-line="76" selection-start-column="4" selection-end-line="76" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HW3/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="74" column="30" lean-forward="true" selection-start-line="74" selection-start-column="30" selection-end-line="74" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/HW3/MNIST_Classifier.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="29" column="26" lean-forward="true" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
+        <state relative-caret-position="168">
+          <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
