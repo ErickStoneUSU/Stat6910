@@ -2,9 +2,9 @@ import csv
 import random
 
 import numpy as np
-from sklearn.linear_model import LogisticRegression
 from sklearn import svm
-from sklearn.model_selection import KFold, cross_val_score
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import cross_val_score
 
 
 def read_uci_data():
