@@ -39,6 +39,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-969" />
+    <option name="y" value="1336" />
+    <option name="width" value="978" />
+    <option name="height" value="1159" />
+  </component>
   <component name="ProjectId" id="1R2UQnxG52X5kFMTNBdrOtevZHF" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -70,29 +76,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.problem5">
-    <configuration name="HW2_Gaussian_Mixture_Starter_Code" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="STAT" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="C:\Program Files\Python36\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/HW2" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/HW2/HW2_Gaussian_Mixture_Starter_Code.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.problem4">
     <configuration name="MNIST_Classifier" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="STAT" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -159,6 +143,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="problem4" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="STAT" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/HW4" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/HW4/problem4.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="problem5" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="STAT" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -204,19 +210,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.HW2_Gaussian_Mixture_Starter_Code" />
       <item itemvalue="Python.MNIST_Classifier" />
       <item itemvalue="Python.test (1)" />
       <item itemvalue="Python.body_fat" />
       <item itemvalue="Python.problem5" />
+      <item itemvalue="Python.problem4" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.problem4" />
         <item itemvalue="Python.problem5" />
         <item itemvalue="Python.MNIST_Classifier" />
         <item itemvalue="Python.body_fat" />
         <item itemvalue="Python.test (1)" />
-        <item itemvalue="Python.HW2_Gaussian_Mixture_Starter_Code" />
       </list>
     </recent_temporary>
   </component>
@@ -315,12 +321,13 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Stat6910$HW2_Gaussian_Mixture_Starter_Code.coverage" NAME="HW2_Gaussian_Mixture_Starter_Code Coverage Results" MODIFIED="1569817596308" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HW2" />
+    <SUITE FILE_PATH="coverage/STAT6910$problem5.coverage" NAME="problem5 Coverage Results" MODIFIED="1572121247897" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HW4" />
+    <SUITE FILE_PATH="coverage/Stat6910$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1570954843737" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HW3" />
     <SUITE FILE_PATH="coverage/Stat6910$test.coverage" NAME="test Coverage Results" MODIFIED="1569735605848" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HW2" />
     <SUITE FILE_PATH="coverage/Stat6910$MNIST_Classifier.coverage" NAME="MNIST_Classifier Coverage Results" MODIFIED="1570955130078" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HW3" />
-    <SUITE FILE_PATH="coverage/Stat6910$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1570954843737" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HW3" />
+    <SUITE FILE_PATH="coverage/Stat6910$problem4.coverage" NAME="problem4 Coverage Results" MODIFIED="1572126266779" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HW4" />
     <SUITE FILE_PATH="coverage/Stat6910$NaiveBayes.coverage" NAME="NaiveBayes Coverage Results" MODIFIED="1569750938995" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HW2" />
     <SUITE FILE_PATH="coverage/STAT6910$MNIST_Classifier.coverage" NAME="MNIST_Classifier Coverage Results" MODIFIED="1571037781696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HW3" />
     <SUITE FILE_PATH="coverage/STAT6910$body_fat.coverage" NAME="body_fat Coverage Results" MODIFIED="1571033230530" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HW3" />
-    <SUITE FILE_PATH="coverage/STAT6910$problem5.coverage" NAME="problem5 Coverage Results" MODIFIED="1572121247897" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HW4" />
   </component>
 </project>
