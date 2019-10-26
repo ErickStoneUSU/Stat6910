@@ -17,7 +17,7 @@ def read_uci_data():
     # 1 = {str} 'Skew'
     # 2 = {str} 'Curtosis'
     # 3 = {str} 'Entropy'
-    # 0/1 = {int}
+    # 0/1 = {int} 'Authentic/Not Authentic'
     with open('data_banknote_authentication.csv') as f:
         r = csv.reader(f, delimiter=',')
         first = True
