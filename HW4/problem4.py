@@ -16,23 +16,24 @@ def non_stoch_sub_gradient(x, y, w, b, l):
     scores = []
     J = []
 
-    for i in range(len(x)):
-        a = 100
+    for i in range(1, len(x)):
+        a = max(100 / i, 0.1)
         v = np.dot(w.T, x[i]) + b
         if y[i] * v < 1.0:  # miss classify
-            w = w - a * y[i] * x[i]
-            b = b - a * 1 * y[i]
+            dw = -y[i] * x[i]
+            db = -1 * y[i]
+            w = w - a * dw
+            b = b - a * db
         # do not change anything if it classifies correctly
 
         sc = eval_method(x, y, w, b)
+        print(sc)
         if len(scores) > 0 and scores[-1][1] > 0.93 and abs(sc - scores[-1][1]) < 0.001:
             break
-
-        # print(sc)
         scores.append([i, sc])
         J.append([w, b])
     print(scores)
-    return w, b, J, scores
+    return w, b, scores, J
 
 
 def sub_gradient(x, y, w, b, count, J):
@@ -45,7 +46,7 @@ def sub_gradient(x, y, w, b, count, J):
             jb = -1 * y[i]
             dw += jw
             db += jb
-            J.append([w - dw, b - db, count * len(x) + i])
+            J.append([w - dw, b - db])
 
         # do not change anything if it classifies correctly
     return dw, db, J
@@ -82,7 +83,13 @@ def formula(w, b, rmin, rmax):
     # slope intercept form with 2 weights
     # y = (-(b/w1) / (b / w0)) x + (-b / w1)
     res = []
-    m = (-(b/w[1]) / (b/w[0]))
+    m = 0
+
+    if b != 0:
+        m = (-(b/w[1]) / (b/w[0]))
+    else:
+        m = -w[1] / w[0]
+
     t = (-b/w[1])
     for i in range(rmin, rmax):
         res.append(m * i + t)
@@ -96,11 +103,14 @@ def plot_data_line(x, y, w, b):
     plt.scatter(x0, x1, c=col)
     xl, yl = formula(w, b, 0, 15)
     plt.plot(xl, yl)
+    #plt.show()
+
+
+def plot_J_iters(J):
+    for i in range(1, len(J), 100):
+        xl, yl = formula(J[i][0], J[i][1], 0, 10)
+        plt.plot(xl, yl, color=[i / len(J), 0, 0])
     plt.show()
-
-
-def plot_J(J):
-    plt.plot(J[0], J[1])
 
 
 def main():
@@ -112,7 +122,7 @@ def main():
     #w1, b1, scores1, J1 = non_stoch_sub_gradient(x, y, w, b, l)
     w2, b2, scores2, J2 = stochastic_descent(x, y, b, w, e)
     plot_data_line(x, y, w2, b2)
-    #print(eval_method(x, y, w1, b1))
+    plot_J_iters(J2)
     print(eval_method(x, y, w2, b2))
     # 4.B:
     #   figure 1 (data, learned line)
