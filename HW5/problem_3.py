@@ -23,29 +23,63 @@
 # http://matplotlib.org/examples/pylab examples/subplots demo.html
 
 # (c) (5 pts) Turn in your code.
-from numpy import mean, cov, select, array
-from numpy.linalg import eig
+
+
+# Notes:
+# 42 subjects
+# 48 lighting conditions
+# 2414 size images
+import numpy as np
+from numpy.linalg import eig, svd
+from sklearn.decomposition import PCA
+from numpy import mean, cov
 from scipy.io import loadmat
+from matplotlib import pyplot as plt
+import pandas as pd
 
 
-def pca_mine(data):
-    # flatten first two dimensions
-    # get the mean of each column
-    if len(data.shape) > 2:
-        data = data.reshape(data.shape[0] * data.shape[1], data.shape[2])
-    print(data)
-    m = mean(data.T, axis=1)
-    # center each column
-    c = data - m
-    # get covariance matrix
-    cm = cov(c)
-    # get eign decomposition of covariance matrix
-    val, vec = eig(cm)
+def pca_mine(data, k=-1):
+    # center each column with its mean
+    # get eign decomposition and covariance matrix
     # get data projections
-    p = vec.T.dot(c)
-    return p, val, vec
+    mu = mean(data, axis=0)
+    dt = data - mu
+    cm = cov(dt.T)
+    val, vec = np.linalg.eig(cm)
+    val = np.real(val / np.sum(val))
+    vec = np.real(vec)
+    p = np.dot(vec, dt.T)
+    pairs = list(zip(val, vec))
+    pairs.sort(key=lambda x: x[0], reverse=True)
+    va, ve = zip(*pairs)
+    sig = p.std(axis=0).mean()
+    return p, va, ve, cm, mu, sig
 
 
+rng = np.random.RandomState(1)
+X = np.dot(rng.rand(2, 2), rng.randn(2, 200)).T
 faces = loadmat('yalefaces.mat')['yalefaces']
-test = array([[1, 2], [3, 4], [5, 6]])
-p, val, vec = pca_mine(test)
+fr = faces.reshape(-1, 2414) / 255.0
+p, val, vec, V, mu, sig = pca_mine(fr)
+pc = PCA()
+ret = pc.fit_transform(fr)
+
+plt.plot(val)
+plt.xlabel('Vector')
+plt.ylabel('Explained Variance')
+plt.show(val)
+
+fig, ax = plt.subplots()
+ax.scatter(vec[0], vec[1])
+ax.set_aspect('equal')
+plt.show()
+plt.semilogy(V)
+plt.show()
+plt.semilogy(pc.get_covariance())
+plt.show()
+plt.plot(vec[0])
+plt.show()
+#
+print('hello')
+
+# A: 62 -> 95%, 234 -> 99%
