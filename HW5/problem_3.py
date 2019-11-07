@@ -15,12 +15,21 @@
 # Useful commands in Matlab: reshape, eig, svd, mean, diag, and Python: np.reshape,
 # np.linalg.eig, np.linalg.svd, np.mean, np.diag.
 
+# Build PCA done
+# Plot cm done
+# 59 to hit 95% variance
+# 201 to hit 99% variance
+# 1 - 59/2414 = 97.56% dimension reduction
+# 1 - 201/2414 = 91.67% dimension reduction
+
 # (b) (5 pts) Hand in a 4 × 5 array of subplots showing principal eigenvectors
 # (‘eigenfaces’) 0 through 19 as images, treating the sample mean as the zeroth order principal eigenvector. Comment
 # on what facial or lighting variations some of the different principal components are capturing.
 # Useful commands in Matlab: subplot, imagesc, colormap(gray),
 # in Python: plt.imshow(x, cmap=plt.get cmap(’gray’)), and for subplots a useful link is
 # http://matplotlib.org/examples/pylab examples/subplots demo.html
+
+
 
 # (c) (5 pts) Turn in your code.
 
@@ -30,12 +39,11 @@
 # 48 lighting conditions
 # 2414 size images
 import numpy as np
-from numpy.linalg import eig, svd
-from sklearn.decomposition import PCA
+from sklearn.preprocessing import normalize
+from matplotlib import pyplot as plt
 from numpy import mean, cov
 from scipy.io import loadmat
-from matplotlib import pyplot as plt
-import pandas as pd
+from sklearn.decomposition import PCA
 
 
 def pca_mine(data, k=-1):
@@ -43,43 +51,59 @@ def pca_mine(data, k=-1):
     # get eign decomposition and covariance matrix
     # get data projections
     mu = mean(data, axis=0)
-    dt = data - mu
-    cm = cov(dt.T)
+    dt = normalize(data) - mu
+    cm = cov(dt)
     val, vec = np.linalg.eig(cm)
     val = np.real(val / np.sum(val))
     vec = np.real(vec)
-    p = np.dot(vec, dt.T)
+    p = np.dot(vec, dt)
     pairs = list(zip(val, vec))
     pairs.sort(key=lambda x: x[0], reverse=True)
-    va, ve = zip(*pairs)
+    if k > 0:
+        va, ve = zip(*(pairs[:k]))
+    else:
+        va, ve = zip(*pairs)
     sig = p.std(axis=0).mean()
-    return p, va, ve, cm, mu, sig
+    return p, np.array(va), np.array(ve), cm, mu, sig
 
 
-rng = np.random.RandomState(1)
-X = np.dot(rng.rand(2, 2), rng.randn(2, 200)).T
-faces = loadmat('yalefaces.mat')['yalefaces']
-fr = faces.reshape(-1, 2414) / 255.0
-p, val, vec, V, mu, sig = pca_mine(fr)
-pc = PCA()
-ret = pc.fit_transform(fr)
+def load_data():
+    faces = loadmat('yalefaces.mat')['yalefaces']
+    return np.rot90(faces.T,k=3, axes=(1,2))
 
-plt.plot(val)
-plt.xlabel('Vector')
-plt.ylabel('Explained Variance')
-plt.show()
 
-fig, ax = plt.subplots()
-ax.scatter(vec[0], vec[1])
-ax.set_aspect('equal')
-plt.show()
-plt.semilogy(V)
-plt.show()
-plt.semilogy(pc.get_covariance())
-plt.show()
-plt.plot(vec[0])
-plt.show()
-#
-print('hello')
+def test():
+    fr = load_data()
+    p, val, vec, cm, mu, sig = pca_mine(fr.reshape(2414, -1))
+    pc = PCA()
+    ret = pc.fit_transform(fr.reshape(2414, -1))
+    print('')
 
-# A: 62 -> 95%, 234 -> 99%
+
+# A: requires semilogy of covariance matrix
+def plot_covmat():
+    fr = load_data()
+    p, val, vec, cm, mu, sig = pca_mine(fr)
+    plt.semilogy(cm)
+    plt.xlabel('Vector')
+    plt.ylabel('Explained Variance')
+    plt.show()
+
+
+def plot_eign_faces():
+    fr = load_data()
+    p, val, vec, cm, mu, sig = pca_mine(fr.reshape(2414, -1), 20)
+    print(p.shape)
+    print(vec.shape)
+    print(fr.shape)
+    vr = np.array(vec)
+    for i in range(20):
+        # plot each eigenvector into a subplot
+        plt.subplot(4, 5, i + 1)
+        plt.imshow(p[i].reshape(48, 42), cmap='Greys')
+    plt.show()
+    print('')
+
+
+plot_eign_faces()
+
