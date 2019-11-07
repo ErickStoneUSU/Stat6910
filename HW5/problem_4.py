@@ -91,11 +91,11 @@ def get_data():
 
 
 def pick(d, file_name):
-    pickle.dump(d, open(file_name, 'wb'))
+    pickle.dump(d, open(file_name + '.pck', 'wb'))
 
 
 def load(file_name):
-    return pickle.load(open(file_name, 'rb'))
+    return pickle.load(open(file_name + '.pck', 'rb'))
 
 
 def populate_phate(d, name, t=-1):
@@ -105,13 +105,14 @@ def populate_phate(d, name, t=-1):
     else:
         ph = phate.PHATE(t=t)
     cells = ph.fit_transform(d)
-    plot_phate(ph, cells)
     pick([ph, cells], name + str(t))
-    return ph, cells
+    return ph, np.array(cells).T
 
 
-def plot_phate(ph, cells):
-    plt.plot(cells)
+def plot_phate(c, c_l, c_h):
+    plt.scatter(c[0], c[1], cmap='blue')
+    plt.scatter(c_l[0], c_l[1], cmap='red')
+    plt.scatter(c_h[0], c_h[1], cmap='green')
     plt.show()
 
 
@@ -120,13 +121,13 @@ x_train, y_train, x_test, y_test = get_data()
 ph_op, cells_op = populate_phate(x_train, 'op')
 ph_low, cells_low = populate_phate(x_train, 'low', 20)
 ph_high, cells_high = populate_phate(x_train, 'high', 32)
-
+plot_phate(cells_op, cells_low, cells_high)
 print('hello')
 
-ph_op_test, cells_op_test = populate_phate(x_train, 'op_test')
-ph_low_test, cells_low_test = populate_phate(x_train, 'low_test', 20)
-ph_high_test, cells_high_test = populate_phate(x_train, 'high_test', 32)
-
+ph_op_test, cells_op_test = populate_phate(x_test, 'op_test')
+ph_low_test, cells_low_test = populate_phate(x_test, 'low_test', ph_op_test.optimal_t - 6)
+ph_high_test, cells_high_test = populate_phate(x_test, 'high_test', ph_op_test.optimal_t + 6)
+plot_phate(cells_op_test, cells_low_test, cells_high_test)
 # what are the similarities and differences between them?
 
 # ari = adjusted_rand_score(labels, predicted)
