@@ -67,7 +67,7 @@ ret = pc.fit_transform(fr)
 plt.plot(val)
 plt.xlabel('Vector')
 plt.ylabel('Explained Variance')
-plt.show(val)
+plt.show()
 
 fig, ax = plt.subplots()
 ax.scatter(vec[0], vec[1])
