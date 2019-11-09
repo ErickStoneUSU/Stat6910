@@ -51,12 +51,16 @@ def pca_mine(data, k=-1):
     # get eign decomposition and covariance matrix
     # get data projections
     mu = mean(data, axis=0)
-    dt = normalize(data) - mu
-    cm = cov(dt)
+    dt = normalize(data - mu)
+    cm = cov(dt.T)
     val, vec = np.linalg.eig(cm)
+    # real to handle floating error
+    # / val to get proportional variance explained
     val = np.real(val / np.sum(val))
-    vec = np.real(vec)
-    p = np.dot(vec, dt)
+    vec = np.real(vec).T
+    p = np.dot(vec, dt.T).T
+
+    # get the highest variance explaining eigenvalues paired with their eigenvectors
     pairs = list(zip(val, vec))
     pairs.sort(key=lambda x: x[0], reverse=True)
     if k > 0:
@@ -83,7 +87,7 @@ def test():
 # A: requires semilogy of covariance matrix
 def plot_covmat():
     fr = load_data()
-    p, val, vec, cm, mu, sig = pca_mine(fr)
+    p, val, vec, cm, mu, sig = pca_mine(fr.reshape(2414, -1))
     plt.semilogy(cm)
     plt.xlabel('Vector')
     plt.ylabel('Explained Variance')
@@ -92,18 +96,15 @@ def plot_covmat():
 
 def plot_eign_faces():
     fr = load_data()
-    p, val, vec, cm, mu, sig = pca_mine(fr.reshape(2414, -1), 20)
-    print(p.shape)
-    print(vec.shape)
-    print(fr.shape)
-    vr = np.array(vec)
+    p, val, vec, cm, mu, sig = pca_mine(fr.reshape(2414, -1))
     for i in range(20):
         # plot each eigenvector into a subplot
         plt.subplot(4, 5, i + 1)
-        plt.imshow(p[i].reshape(48, 42), cmap='Greys')
+        plt.imshow(vec[i].reshape(48, 42), cmap='Greys')
     plt.show()
     print('')
 
 
+plot_covmat()
 plot_eign_faces()
 
