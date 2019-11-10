@@ -82,6 +82,16 @@ from sklearn.cluster import KMeans
 from sklearn.cluster import SpectralClustering
 from sklearn.metrics.cluster import adjusted_rand_score
 
+n_clust = 2
+
+
+def shuff(x, y):
+    return np.array(x), np.array(y)
+    # z = list(zip(x, y))
+    # random.shuffle(z)
+    # x_s, y_s = zip(*z)
+    # return np.array(x_s), np.array(y_s)
+
 
 def get_data():
     # note that the file names need to have the . replaced with -
@@ -89,38 +99,37 @@ def get_data():
     x_train, y_train = data.load_training()
     x_test, y_test = data.load_testing()
 
-    x_train = np.array(x_train)
-    y_train = np.array(y_train)
-    x_test = np.array(x_test)
-    y_test = np.array(y_test)
+    x_train, y_train = shuff(x_train, y_train)
+    x_test, y_test = shuff(x_test, y_test)
+
     return x_train, y_train, x_test, y_test
 
 
 def pick(d, file_name):
-    with open('pickles/' + file_name + '.pck', 'wb') as f:
+    with open('pickles/' + file_name + str(n_clust) + '.pck', 'wb') as f:
         pickle.dump(d, f)
 
 
 def load(file_name):
-    with open('pickles/' + file_name + '.pck', 'rb') as f:
+    with open('pickles/' + file_name + str(n_clust) + '.pck', 'rb') as f:
         return pickle.load(f)
 
 
 def populate_phate(d, name, t=-1):
     ph = None
     if t < 0:
-        ph = phate.PHATE()
+        ph = phate.PHATE(n_components=n_clust)
     else:
-        ph = phate.PHATE(t=t)
+        ph = phate.PHATE(t=t, n_components=n_clust)
     cells = ph.fit_transform(d)
-    pick(ph, name + str(t))
+    pick(ph, name)
     return ph, np.array(cells).T
 
 
 def plot_phate(c, c_l, c_h, type, val, labels):
-    phate.plot.scatter2d(c, c=labels, title='Optimal T: ' + str(val) + type)
-    phate.plot.scatter2d(c_l, c=labels, title='Low T: ' + str(val - 6) + type)
-    phate.plot.scatter2d(c_h, c=labels, title='High T: ' + str(val + 6) + type)
+    phate.plot.scatter2d(c, c=labels, title='Optimal T: ' + str(val) + type, filename='op_' + type)
+    phate.plot.scatter2d(c_l, c=labels, title='Low T: ' + str(val - 6) + type, filename='low_' + type)
+    phate.plot.scatter2d(c_h, c=labels, title='High T: ' + str(val + 6) + type, filename='high_' + type)
 
 
 def prob4_pop_picks():
@@ -159,7 +168,7 @@ def mod_compare(mod, x, y):
 
 
 def prob4_kmeans():
-    mod = KMeans(n_clusters=2)
+    mod = KMeans(n_clusters=10)
     title = 'KMeans'
     x_train, y_train, x_test, y_test = get_data()
     k, p, a = mod_compare(mod, x_train, y_train)
@@ -192,11 +201,11 @@ def spec_mod_compare(mod, x, y):
 def spec_clust():
     # rbf is Gaussian which is default
     x_train, y_train, x_test, y_test = get_data()
-    mod = SpectralClustering(2, n_init=100, assign_labels='discretize')
+    mod = SpectralClustering(n_clusters=10, degree=10)
     k, p, a = spec_mod_compare(mod, x_train, y_train)
     k_t, p_t, a_t = spec_mod_compare(mod, x_test, y_test)
-    op = load('op-1')
-    op_t = load('op_test-1')
+    op = load('op')
+    op_t = load('op_test')
     phate.plot.scatter2d(op, c=p, title='Spectral T: ' + str(op.optimal_t), filename='Spec_op')
     phate.plot.scatter2d(op_t, c=p_t, title='Spectral Test T: ' + str(op_t.optimal_t), filename='Spec_op_t')
 
@@ -207,4 +216,4 @@ prob4_kmeans()
 spec_clust()
 
 
-# TODO 1. 10d rep of everything,
+# TODO 1. 2d rep of everything,
