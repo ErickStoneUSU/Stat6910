@@ -76,6 +76,7 @@ def load_data():
     return np.rot90(faces.T,k=3, axes=(1,2))
 
 
+# test function to compare my pca to system pca
 def test():
     fr = load_data()
     p, val, vec, cm, mu, sig = pca_mine(fr.reshape(2414, -1))
@@ -85,12 +86,12 @@ def test():
 
 
 # A: requires semilogy of covariance matrix
-def plot_covmat():
+def plot_eigs():
     fr = load_data()
     p, val, vec, cm, mu, sig = pca_mine(fr.reshape(2414, -1))
-    plt.semilogy(cm)
     plt.xlabel('Vector')
     plt.ylabel('Explained Variance')
+    plt.semilogy(sorted(np.diagonal(vec), reverse=True))
     plt.show()
 
 
@@ -105,6 +106,6 @@ def plot_eign_faces():
     print('')
 
 
-plot_covmat()
+plot_eigs()
 plot_eign_faces()
 

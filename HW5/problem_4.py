@@ -82,7 +82,7 @@ from sklearn.cluster import KMeans
 from sklearn.cluster import SpectralClustering
 from sklearn.metrics.cluster import adjusted_rand_score
 
-n_clust = 2
+n_clust = 10
 
 
 def shuff(x, y):
@@ -176,6 +176,8 @@ def prob4_kmeans():
     op_t = load('op_test')
     phate.plot.scatter2d(op, c=p, title=title + ' T: ' + str(op.optimal_t), filename='KMeans_op')
     phate.plot.scatter2d(op_t, c=p_t, title=title + ' Test T: ' + str(op_t.optimal_t), filename='KMeans_op_t')
+    print(a)
+    print(a_t)
 
 
 def spec_mod_compare(mod, x, y):
@@ -185,34 +187,31 @@ def spec_mod_compare(mod, x, y):
     preds = []
 
     try:
-        for i in range(0, len(z), 10000):
-            xs, ys = zip(*z[i:i+10000])
+        for i in range(0, len(z), 1000):
+            xs, ys = zip(*z[i:i+1000])
             mod.fit(xs)
             ari += adjusted_rand_score(ys, mod.labels_)
             preds += list(mod.labels_)
             j += 1
     except Exception as e:
         print('Done')
-    print(ari / j)
     return mod, preds, ari / j
 
 
 def spec_clust():
     # rbf is Gaussian which is default
     x_train, y_train, x_test, y_test = get_data()
-    mod = SpectralClustering(n_clusters=10, degree=10)
+    mod = SpectralClustering(n_clusters=10, eigen_solver='arpack', affinity="nearest_neighbors")
     k, p, a = spec_mod_compare(mod, x_train, y_train)
     k_t, p_t, a_t = spec_mod_compare(mod, x_test, y_test)
     op = load('op')
     op_t = load('op_test')
     phate.plot.scatter2d(op, c=p, title='Spectral T: ' + str(op.optimal_t), filename='Spec_op')
     phate.plot.scatter2d(op_t, c=p_t, title='Spectral Test T: ' + str(op_t.optimal_t), filename='Spec_op_t')
+    print(a)
+    print(a_t)
 
-
-prob4_pop_picks()
-prob4_a_plot()
+# prob4_pop_picks()
+# prob4_a_plot()
 prob4_kmeans()
 spec_clust()
-
-
-# TODO 1. 2d rep of everything,
