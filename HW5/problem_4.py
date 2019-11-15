@@ -20,6 +20,7 @@
 
 # (b) (4 pts) Repeat part (a) for the test data and comment on any similarities and differences between
 # the results of the two datasets.
+#   ::: t = 25, chosen t_lower = 19, chosen t_higher = 31
 
 # (c) (4 pts) Apply k-means clustering to just the features of the training data (do not include labels).
 # Compute the adjusted Rand index (ARI) between your cluster outputs and the true labels of the
@@ -29,9 +30,12 @@
 # Note: You may need to do subsampling to make this computationally feasible. If you do, repeat
 # the clustering for multiple (say 10-20) random subsamples and report the average ARI. For the
 # PHATE plot, choose one of the subsamples and show the results on that.
+#    ::: ARI: .34, Graphically, there are significant portions that do not match up.
+
 
 # (d) (4 pts) Repeat part (c) for the test data and comment on any similarities and differences between
 # the results of the two datasets.
+#    ::: ARI: .32, Graphically, there are significant portions that do not match up.
 
 # (e) (4 pts) Apply spectral clustering to just the features of the training data (do not include labels)
 # using a radial or Gaussian kernel. Compute the ARI between your cluster outputs and the true
@@ -43,6 +47,7 @@
 # Note: You may need to do subsampling to make this computationally feasible. If you do, repeat
 # the final clustering for multiple (say 10-20) random subsamples and report the average ARI. For
 # the PHATE plot, choose one of the subsamples and show the results on that.
+#   ::: ARI:
 
 # (f) (4 pts) Apply spectral clustering to the features of the test data using the same kernel and
 # bandwidth you selected in part (e). Report the ARI and plot the PHATE visualization colored
@@ -68,13 +73,24 @@
 
 # (j) (4 pts) Turn in your code.
 
-# using pyphate to do phate
-from mnist import MNIST
-import phate
-import numpy as np
-import matplotlib.pyplot as plt
-from sklearn.metrics.cluster import adjusted_rand_score
 import pickle
+
+import numpy as np
+import phate
+from mnist import MNIST
+from sklearn.cluster import KMeans
+from sklearn.cluster import SpectralClustering
+from sklearn.metrics.cluster import adjusted_rand_score
+
+n_clust = 2
+
+
+def shuff(x, y):
+    return np.array(x), np.array(y)
+    # z = list(zip(x, y))
+    # random.shuffle(z)
+    # x_s, y_s = zip(*z)
+    # return np.array(x_s), np.array(y_s)
 
 
 def get_data():
@@ -83,52 +99,120 @@ def get_data():
     x_train, y_train = data.load_training()
     x_test, y_test = data.load_testing()
 
-    x_train = np.array(x_train)
-    y_train = np.array(y_train)
-    x_test = np.array(x_test)
-    y_test = np.array(y_test)
+    x_train, y_train = shuff(x_train, y_train)
+    x_test, y_test = shuff(x_test, y_test)
+
     return x_train, y_train, x_test, y_test
 
 
 def pick(d, file_name):
-    pickle.dump(d, open(file_name + '.pck', 'wb'))
-
+    with open('pickles/' + file_name + str(n_clust) + '.pck', 'wb') as f:
+        pickle.dump(d, f)
 
 def load(file_name):
-    return pickle.load(open(file_name + '.pck', 'rb'))
+    with open('pickles/' + file_name + str(n_clust) + '.pck', 'rb') as f:
+        return pickle.load(f)
 
 
 def populate_phate(d, name, t=-1):
     ph = None
     if t < 0:
-        ph = phate.PHATE()
+        ph = phate.PHATE(n_components=n_clust)
     else:
-        ph = phate.PHATE(t=t)
+        ph = phate.PHATE(t=t, n_components=n_clust)
     cells = ph.fit_transform(d)
-    pick([ph, cells], name + str(t))
+    pick(ph, name)
     return ph, np.array(cells).T
 
 
-def plot_phate(c, c_l, c_h):
-    plt.scatter(c[0], c[1], cmap='blue')
-    plt.scatter(c_l[0], c_l[1], cmap='red')
-    plt.scatter(c_h[0], c_h[1], cmap='green')
-    plt.show()
+def plot_phate(c, c_l, c_h, type, val, labels):
+    phate.plot.scatter2d(c, c=labels, title='Optimal T: ' + str(val) + type, filename='op_' + type)
+    phate.plot.scatter2d(c_l, c=labels, title='Low T: ' + str(val - 6) + type, filename='low_' + type)
+    phate.plot.scatter2d(c_h, c=labels, title='High T: ' + str(val + 6) + type, filename='high_' + type)
 
 
-x_train, y_train, x_test, y_test = get_data()
+def prob4_pop_picks():
+    x_train, y_train, x_test, y_test = get_data()
 
-ph_op, cells_op = populate_phate(x_train, 'op')
-ph_low, cells_low = populate_phate(x_train, 'low', 20)
-ph_high, cells_high = populate_phate(x_train, 'high', 32)
-plot_phate(cells_op, cells_low, cells_high)
-print('hello')
+    ph_op, cells_op = populate_phate(x_train, 'op')
+    ph_low, cells_low = populate_phate(x_train, 'low', ph_op.optimal_t - 6)
+    ph_high, cells_high = populate_phate(x_train, 'high', ph_op.optimal_t + 6)
+    print('Optimal T Train: ' + str(ph_op.optimal_t))
+    ph_op_test, cells_op_test = populate_phate(x_test, 'op_test')
+    ph_low_test, cells_low_test = populate_phate(x_test, 'low_test', ph_op_test.optimal_t - 6)
+    ph_high_test, cells_high_test = populate_phate(x_test, 'high_test', ph_op_test.optimal_t + 6)
+    print('Optimal T Train: ' + str(ph_op_test.optimal_t))
+    # what are the similarities and differences between them?
 
-ph_op_test, cells_op_test = populate_phate(x_test, 'op_test')
-ph_low_test, cells_low_test = populate_phate(x_test, 'low_test', ph_op_test.optimal_t - 6)
-ph_high_test, cells_high_test = populate_phate(x_test, 'high_test', ph_op_test.optimal_t + 6)
-plot_phate(cells_op_test, cells_low_test, cells_high_test)
-# what are the similarities and differences between them?
 
-# ari = adjusted_rand_score(labels, predicted)
-print('hello')
+def prob4_a_plot():
+    x_train, y_train, x_test, y_test = get_data()
+
+    op = load('op')
+    low = load('low')
+    high = load('high')
+    op_t = load('op_test')
+    low_t = load('low_test')
+    high_t = load('high_test')
+
+    plot_phate(op, low, high, 'Train', op.optimal_t, y_train)
+    plot_phate(op_t, low_t, high_t, 'Test', op_t.optimal_t, y_test)
+
+
+def mod_compare(mod, x, y):
+    predicted = mod.fit_predict(x)
+    ari = adjusted_rand_score(y, predicted)
+    print('KMeans ARI: ' + str(ari))
+    return mod, predicted, ari
+
+
+def prob4_kmeans():
+    mod = KMeans(n_clusters=10)
+    title = 'KMeans'
+    x_train, y_train, x_test, y_test = get_data()
+    k, p, a = mod_compare(mod, x_train, y_train)
+    k_t, p_t, a_t = mod_compare(mod, x_test, y_test)
+    op = load('op')
+    op_t = load('op_test')
+    phate.plot.scatter2d(op, c=p, title=title + ' T: ' + str(op.optimal_t), filename='KMeans_op')
+    phate.plot.scatter2d(op_t, c=p_t, title=title + ' Test T: ' + str(op_t.optimal_t), filename='KMeans_op_t')
+
+
+def spec_mod_compare(mod, x, y):
+    z = list(zip(x, y))
+    ari = 0.0
+    j = 0
+    preds = []
+
+    try:
+        for i in range(0, len(z), 10000):
+            xs, ys = zip(*z[i:i+10000])
+            mod.fit(xs)
+            ari += adjusted_rand_score(ys, mod.labels_)
+            preds += list(mod.labels_)
+            j += 1
+    except Exception as e:
+        print('Done')
+    print(ari / j)
+    return mod, preds, ari / j
+
+
+def spec_clust():
+    # rbf is Gaussian which is default
+    x_train, y_train, x_test, y_test = get_data()
+    mod = SpectralClustering(n_clusters=10, degree=10)
+    k, p, a = spec_mod_compare(mod, x_train, y_train)
+    k_t, p_t, a_t = spec_mod_compare(mod, x_test, y_test)
+    op = load('op')
+    op_t = load('op_test')
+    phate.plot.scatter2d(op, c=p, title='Spectral T: ' + str(op.optimal_t), filename='Spec_op')
+    phate.plot.scatter2d(op_t, c=p_t, title='Spectral Test T: ' + str(op_t.optimal_t), filename='Spec_op_t')
+
+
+prob4_pop_picks()
+prob4_a_plot()
+prob4_kmeans()
+spec_clust()
+
+
+# TODO 1. 2d rep of everything,
