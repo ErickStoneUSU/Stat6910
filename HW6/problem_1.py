@@ -5,25 +5,24 @@ from scipy.spatial import distance
 
 
 def generate_histo(data_points):
-    plt.hist(data_points)
+    plt.hist(data_points, range=[0.0,2.0])
     plt.show()
 
 
 def run():
-    for i in [5, 10, 20, 100, 1000]:
+    for i in [5, 10, 20, 100, 1000, 100000]:
         l = []
         for j in range(200):
             v = np.zeros(i)
             while norm(v) < .0001:
                 v = np.random.normal(0, 1, i)
             v = v / norm(v)
-            print(sum(v*v))
             l.append(v)
-        generate_histo(l)
+        dist = []
+        for j in range(len(l)):
+            for k in range(j + 1, len(l)):
+                dist.append(distance.euclidean(l[j], l[k]))
+        generate_histo(dist)
 
-# >>> from scipy.spatial import distance
-# >>> distance.euclidean([1, 0, 0], [0, 1, 0])
-# 1.4142135623730951
-# >>> distance.euclidean([1, 1, 0], [0, 1, 0])
-# 1.0
+
 run()

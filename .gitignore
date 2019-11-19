@@ -1,0 +1,9 @@
+*.asv
+*.txt
+.idea
+*.png
+*.csv
+*.mat
+*.gz
+*ubyte
+*.asv
