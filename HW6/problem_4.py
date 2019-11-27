@@ -17,10 +17,10 @@ def split_data(x, y):
     return x_train, x_test, y_train, y_test
 
 
-def get_data(with_pca=False, filename='mnist_49_3000.mat'):
+def get_data(with_pca=False, filename='mnist_49_3000.mat', shifted=False):
     dict = loadmat(filename)
-    x = np.array(dict['x']).T
-    y = np.array(dict['y']).T
+    x = np.array(dict['x' if not shifted else 'x_shift']).T
+    y = np.array(dict['y' if not shifted else 'y_shift']).T
     if with_pca:
         p = PCA(.95)
         p.fit(x)
@@ -30,34 +30,37 @@ def get_data(with_pca=False, filename='mnist_49_3000.mat'):
     return x_train, x_test, y_train, y_test
 
 
-def train_mod(mod, x, y, filename, do_save=False):
+def train_mod(mod, x, y, x_test, y_test, do_save=False):
+    y = y.reshape(-1,)
     score = cross_val_score(mod, x, y, cv=200)
     mod.fit(x, y)
-    print('Model Score: ' + str(sum(score) / len(score)))
-    x_train, x_test, y_train, y_test = get_data(False, 'mnist_49_1000_shifted.mat')
-    mod.predict()
-
-    if do_save:
-        # save(mod, filename)
-        print('hello')
+    return sum(score) / len(score), sum(y_test[:,0] == mod.predict(x_test)[:]) / len(x_test)
+    # print('Model Score: ' + str(sum(score) / len(score)))
 
 
-def train(with_pca=False):
-    x_train, x_test, y_train, y_test = get_data(with_pca)
+def train(with_pca=False, filename='mnist_49_3000.mat', shifted=False):
+    x_train, x_test, y_train, y_test = get_data(with_pca, filename, shifted)
     lda_m = LinearDiscriminantAnalysis()
     logreg_m = LogisticRegression(C=1e5, solver='lbfgs', multi_class='warn')  # 82.125
     svm_m = svm.SVC(C=0.5, kernel='linear')  # 82.83
     knn_m = KNeighborsClassifier()
     forest_m = RandomForestClassifier(n_estimators=1000, criterion='entropy', max_depth=4, min_samples_leaf=3)  # 84.08
 
-    train_mod(lda_m, x_train, y_train, 'lda.pck')
-    train_mod(logreg_m, x_train, y_train, 'logreg.pck')
-    train_mod(svm_m, x_train, y_train, 'svm.pck')
-    train_mod(knn_m, x_train, y_train, 'knn.pck')
-    train_mod(forest_m, x_train, y_train, 'forest.pck')
+    lda_sc = train_mod(lda_m, x_train, y_train, x_test, y_test, 'lda.pck')
+    log_sc = train_mod(logreg_m, x_train, y_train, x_test, y_test, 'logreg.pck')
+    svm_sc = train_mod(svm_m, x_train, y_train, x_test, y_test, 'svm.pck')
+    knn_sc = train_mod(knn_m, x_train, y_train, x_test, y_test, 'knn.pck')
+    forest_sc = train_mod(forest_m, x_train, y_train, x_test, y_test, 'forest.pck')
+
+    return lda_sc, log_sc, svm_sc, knn_sc, forest_sc
 
 
 print("A")
-train(False)
+a = train(False)
 print("B")
-train(True)
+b = train(True)
+print("C_No_PCA")
+c = train(False, 'mnist_49_1000_shifted.mat', True)
+print("C_With_PCA")
+c_pca = train(True, 'mnist_49_1000_shifted.mat', True)
+print(a, b, c, c_pca)

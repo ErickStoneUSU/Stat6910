@@ -24,3 +24,11 @@ plt.show()
 # TODO implement init variables
 # TODO implement log-likelihood
 # TODO implement plots
+
+prev = 0.0
+curr = 1.0
+while abs(prev - curr) > 0.0:
+    # E Step
+    print('a')
+    # M Step
+    print('b')
