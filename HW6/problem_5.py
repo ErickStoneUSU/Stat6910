@@ -88,12 +88,12 @@ def part_f(x, p1, p2, k):
 
 
 def run():
-    # Part A
     x, x_t1, x_t2 = get_data()
     # part_a(x) # get the bandwidth
     # part_b(x) # plot the kde
+    # part_d(x, x_t1, x_t2) # outlier score 1
     for i in [100, 150, 200]:
-        part_f(x, x_t1, x_t2, i)  # The outlier score
+        part_f(x, x_t1, x_t2, i)  # outlier score 2
 
 
 run()
